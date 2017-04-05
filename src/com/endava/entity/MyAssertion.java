@@ -6,7 +6,8 @@ package com.endava.entity;
 public class MyAssertion {
 
     public static int recursiveSumOfArray(int[] array, int numberOfElements) {
-        assert numberOfElements < array.length : "Invalid number of Elements";
+        for (int i = 0; i < array.length; i++)
+            assert (array[i] > 5) : "Elements should be greater than 5";
         if (numberOfElements == 0)
             return array[numberOfElements];
         else
@@ -14,9 +15,8 @@ public class MyAssertion {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5};
+        int[] array = {10, 20, 30, 40, 50};
         int sum = recursiveSumOfArray(array, array.length - 1);
-        //int sum = sumOfArray(array, 10);
         System.out.println(sum);
     }
 }

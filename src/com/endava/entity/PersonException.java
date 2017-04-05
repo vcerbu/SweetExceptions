@@ -75,20 +75,16 @@ public class PersonException extends Throwable {
         }
     }
 
+    public static void ThrowRandomException(Map<Integer, Throwable> myMap) throws Throwable{
+        Random rand = new Random();
+        int randomNum = rand.nextInt((2));
+        throw myMap.get(randomNum);
+    }
+
+    @Override
     public void printStackTrace() {
         super.printStackTrace();
-        System.out.println("This is printStackTrace method");
+        System.out.println("THIS IS PRINTSTACKTRACE!");
     }
-
-    public static void ThrowRandomException(Map<Integer, Throwable> myMap) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt((3) + 1);
-        try {
-            throw myMap.get(randomNum);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-    }
-
 }
 

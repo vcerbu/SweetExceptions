@@ -12,16 +12,17 @@ import static com.endava.entity.PersonException.ThrowRandomException;
 import static com.endava.utilities.Utilities.readString;
 
 public class Main {
-    public static void main(String[] args) {
-        if (args.length < 1) throw new RuntimeException("Please insert filePath");
+    public static void main(String[] args) throws Throwable {
+        //if (args.length < 1) throw new RuntimeException("Please insert filePath");
         PersonException personException = new PersonException();
         List<Object> myInfo = new ArrayList<>();
         Map<Integer, Throwable> myMap = new HashMap<>();
-//        String fileName = "C:\\Users\\vcerbu\\Desktop\\Java June\\f.txt";
-//        if (FileSystems.getDefault().getSeparator().equals('/'))
-//            fileName = "/home/ipanasenco/file.txt";
+        String fileName = "C:\\Users\\vcerbu\\Desktop\\Java June\\f.txt";
+        //if (FileSystems.getDefault().getSeparator().equals('/'))
+        //fileName = "/home/ipanasenco/file.txt";
         try {
-            myInfo = personException.readFromFile(args[1]);
+            myInfo = personException.readFromFile(fileName);
+            //myInfo = personException.readFromFile(args[1]);
             personException.displayInformation(myInfo);
             personException.displayElements(myInfo);
 
@@ -47,12 +48,24 @@ public class Main {
         }
 
 
+
+
         myMap.put(0, personException);
         myMap.put(1, new IllegalArgumentException());
         myMap.put(2, new SQLException());
 
         System.out.println("Randomly thrown exception:");
-        ThrowRandomException(myMap);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            PersonException.ThrowRandomException(myMap);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
     }
 
 }
