@@ -1,6 +1,7 @@
 package com.endava.entity;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 
 import static com.endava.utilities.Utilities.convertStringToInt;
@@ -43,8 +44,6 @@ public class PersonException extends Throwable {
         BufferedReader br;
         List<String> myList = new ArrayList<>();
         File source = new File(fileName);
-        if (!source.exists())
-            throw new FileNotFoundException("Could not find file: " + fileName);
         br = new BufferedReader(new FileReader(source));
         try {
             while ((line = br.readLine()) != null)
