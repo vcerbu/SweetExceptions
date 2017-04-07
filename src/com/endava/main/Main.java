@@ -22,6 +22,7 @@ public class Main {
         //fileName = "/home/ipanasenco/file.txt";
         try {
             myInfo = personException.readFromFile(fileName);
+            //TODO set get for persons
             //myInfo = personException.readFromFile(args[1]);
             personException.displayInformation(myInfo);
             personException.displayElements(myInfo);
@@ -46,9 +47,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
 
         myMap.put(0, personException);
         myMap.put(1, new IllegalArgumentException());

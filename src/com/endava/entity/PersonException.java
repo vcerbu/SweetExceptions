@@ -8,14 +8,15 @@ import static com.endava.utilities.Utilities.convertStringToInt;
 
 public class PersonException extends Throwable {
 
-    Person person = new Person();
+
+    Person person;
 
     public List readFromFile(String fileName) throws FileNotFoundException {
+        person = new Person();
         String line;
-        BufferedReader br;
         List<String> myList = new ArrayList<>();
         File source = new File(fileName);
-        br = new BufferedReader(new FileReader(source));
+        BufferedReader br = new BufferedReader(new FileReader(source));
         try {
             while ((line = br.readLine()) != null)
                 myList.add(line);
@@ -31,7 +32,7 @@ public class PersonException extends Throwable {
     public void displayInformation(List<Object> myList) throws IndexOutOfBoundsException {
         int position;
         System.out.println("What information to display? (0 - name, 1 - surname, 2 - age)");
-        position = convertStringToInt();
+        position = convertStringToInt();//rename readIntFromConsole
         if (position > myList.size())
             throw new IndexOutOfBoundsException();
         else
