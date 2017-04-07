@@ -8,39 +8,10 @@ import static com.endava.utilities.Utilities.convertStringToInt;
 
 public class PersonException extends Throwable {
 
-    private String name;
-    private String surname;
-    private int age;
-    private String line = null;
-
-    public PersonException() {
-    }
-
-    public Object getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Object getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Object getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    Person person = new Person();
 
     public List readFromFile(String fileName) throws FileNotFoundException {
+        String line;
         BufferedReader br;
         List<String> myList = new ArrayList<>();
         File source = new File(fileName);
@@ -48,9 +19,9 @@ public class PersonException extends Throwable {
         try {
             while ((line = br.readLine()) != null)
                 myList.add(line);
-            this.setName((String) myList.get(0));
-            this.setSurname((String) myList.get(1));
-            this.setAge(Integer.parseInt(myList.get(2)));
+            person.setName(myList.get(0));
+            person.setSurname(myList.get(1));
+            person.setAge(Integer.parseInt(myList.get(2)));
         } catch (IOException | ClassCastException e) {
             e.printStackTrace();
         }
@@ -75,7 +46,7 @@ public class PersonException extends Throwable {
         }
     }
 
-    public static void ThrowRandomException(Map<Integer, Throwable> myMap) throws Throwable{
+    public static void ThrowRandomException(Map<Integer, Throwable> myMap) throws Throwable {
         Random rand = new Random();
         int randomNum = rand.nextInt((2));
         throw myMap.get(randomNum);
