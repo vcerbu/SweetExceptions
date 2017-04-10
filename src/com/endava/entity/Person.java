@@ -1,5 +1,8 @@
 package com.endava.entity;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 /**
  * Created by vcerbu on 4/7/2017.
  */
@@ -8,7 +11,6 @@ public class Person {
     private String name;
     private String surname;
     private int age;
-
 
     public Person() {
     }
@@ -41,6 +43,12 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void setInfoFromListToPerson(List<String> myList) {
+        this.setName(myList.get(0));
+        this.setSurname(myList.get(1));
+        this.setAge(Integer.parseInt(myList.get(2)));
     }
 
 
