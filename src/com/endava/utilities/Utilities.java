@@ -19,11 +19,11 @@ public class Utilities {
         return str;
     }
 
-    public static int convertStringToInt() {
+    public static int readIntFromConsole() {
         return (Integer.valueOf(readString())).intValue();
     }
 
-    public static float convertStringToFloat() {
+    public static float readFloatFromConsole() {
         return (Float.valueOf(readString())).floatValue();
     }
 

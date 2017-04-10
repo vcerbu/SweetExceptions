@@ -1,43 +1,40 @@
 package com.endava.entity;
 
+
 import java.io.*;
-import java.nio.file.Path;
 import java.util.*;
 
-import static com.endava.utilities.Utilities.convertStringToInt;
+
+import static com.endava.utilities.Utilities.readIntFromConsole;
 
 public class PersonException extends Throwable {
 
+    public List readFromFileInputToList(String fileName) throws FileNotFoundException {
 
-    Person person;
-
-    public List readFromFile(String fileName) throws FileNotFoundException {
-        person = new Person();
         String line;
-        List<String> myList = new ArrayList<>();
+        List<String> personInfo = new ArrayList<>();
         File source = new File(fileName);
         BufferedReader br = new BufferedReader(new FileReader(source));
         try {
             while ((line = br.readLine()) != null)
-                myList.add(line);
-            person.setName(myList.get(0));
-            person.setSurname(myList.get(1));
-            person.setAge(Integer.parseInt(myList.get(2)));
-        } catch (IOException | ClassCastException e) {
+                personInfo.add(line);
+            new Person().setInfoFromListToPerson(personInfo);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return myList;
+        return personInfo;
     }
 
-    public void displayInformation(List<Object> myList) throws IndexOutOfBoundsException {
+    public void displayInformation(List<Object> personInfo) throws IndexOutOfBoundsException {
         int position;
         System.out.println("What information to display? (0 - name, 1 - surname, 2 - age)");
-        position = convertStringToInt();//rename readIntFromConsole
-        if (position > myList.size())
+        position = readIntFromConsole();
+        if (position > personInfo.size())
             throw new IndexOutOfBoundsException();
         else
-            System.out.println(myList.get(position));
+            System.out.println(personInfo.get(position));
     }
+
 
     public void displayElements(List<Object> myList) throws ClassCastException {
         Iterator it = myList.iterator();
